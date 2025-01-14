@@ -336,13 +336,13 @@ Method: POST
 
 ## ساختار پروژه
 
-- <span dir="ltr">auth.controller.ts</span>: شامل کنترلر‌های ثبت‌نام، ورود و تأیید اعتبار.
+<span dir="ltr">auth.controller.ts</span>: شامل کنترلر‌های ثبت‌نام، ورود و تأیید اعتبار.
 
-- <span dir="ltr">auth.service.ts</span>: شامل منطق کسب‌و‌کار برای مدیریت کاربران و توکن‌ها.
+<span dir="ltr">auth.service.ts</span>: شامل منطق کسب‌و‌کار برای مدیریت کاربران و توکن‌ها.
 
-- <span dir="ltr">dto</span>: شامل DTO‌های استفاده شده برای درخواست‌ها.
+<span dir="ltr">dto</span>: شامل DTO‌های استفاده شده برای درخواست‌ها.
 
-- <span dir="ltr">interceptor</span>: شامل اینترسپتور برای تغییر پاسخ‌ها.
+<span dir="ltr">interceptor</span>: شامل اینترسپتور برای تغییر پاسخ‌ها.
 
 </div>
 

@@ -83,4 +83,8 @@ export class AuthService {
       return result;
     }
   }
+
+  async getUserById(id: string): Promise<User> {
+    return await this.userRepository.findOne({ where: { id } });
+  }
 }

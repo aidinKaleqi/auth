@@ -6,6 +6,8 @@ import {
   HttpStatus,
   HttpCode,
   BadRequestException,
+  Get,
+  Param,
 } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { SignupDto } from '../dto/signup.dto';
@@ -52,5 +54,22 @@ export class AuthController {
   async verify(@Body() body: VerifyDto) {
     const result = await this.authService.verifyToken(body.token);
     return result;
+  }
+
+  @Get('user/:id')
+  @UseInterceptors(TransformResponseInterceptor)
+  async getUserById(@Param('id') id: string) {
+    const user = await this.authService.getUserById(id);
+    if (!user) {
+      throw new BadRequestException('User Not Found');
+    }
+    return {
+      status: 'success',
+      data: {
+        id: user.id,
+        fullName: user.fullName,
+        username: user.username,
+      },
+    };
   }
 }

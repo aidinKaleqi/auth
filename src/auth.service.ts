@@ -38,7 +38,7 @@ export class AuthService {
     });
     const check = await comparePassword(password, userData.password);
     if (!check) {
-      throw new UnauthorizedException('error pass');
+      throw new UnauthorizedException('username or password is incorrect.');
     }
     const payload = { username: userData.username, userId: userData.id };
     const token = jwt.sign(payload, process.env.TOKEN_SECRET);

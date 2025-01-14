@@ -5,6 +5,7 @@ import {
   UseInterceptors,
   HttpStatus,
   HttpCode,
+  BadRequestException,
 } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { SignupDto } from '../dto/signup.dto';
@@ -20,7 +21,7 @@ export class AuthController {
   @UseInterceptors(TransformResponseInterceptor)
   async signUp(@Body() body: SignupDto) {
     const check: boolean = await this.authService.checkUsername(body.username);
-    if (check) throw 'User Already Exists';
+    if (check) throw new BadRequestException('User Already Exists');
     await this.authService.insertUser(body);
     return {
       status: 'success',

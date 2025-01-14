@@ -32,7 +32,7 @@ npm run start:prod
 ```
 ## API‌ها
 
-<details>
+<details open>
 <summary>ثبت ‌نام</summary>
 این API برای ثبت نام یک کاربر جدید استفاده می شود.
 <br>
@@ -133,7 +133,7 @@ Method: POST
 
 </details>
 
-<details>
+<details open>
 <summary>ورود</summary>
 این API برای ورود یک کاربر ثبت نام شده استفاده می شود.
 <br>
@@ -230,7 +230,7 @@ Method: POST
 </div>
 </details>
 
-<details>
+<details open>
 <summary>اعتبار سنجی</summary>
 این API برای اعتبار سنجی توکن دریافتی از کاربر استفاده می شود.
 <br>

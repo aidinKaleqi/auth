@@ -60,9 +60,12 @@ export class AuthService {
       }
     }
     return {
-      id: decoded.decoded.userId,
-      username: decoded.decoded.username,
       status: decoded.status,
+      message: Boolean(decoded.status)
+        ? 'user logged in successfully'
+        : 'login failed!',
+      id: decoded?.decoded?.userId ?? null,
+      username: decoded?.decoded?.username ?? null,
     };
   }
 
@@ -76,7 +79,6 @@ export class AuthService {
       result.decoded = decoded;
       return result;
     } catch (error) {
-      console.log(error);
       result.status = false;
       return result;
     }

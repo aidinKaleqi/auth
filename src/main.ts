@@ -2,7 +2,7 @@ import { NestFactory } from '@nestjs/core';
 import { AuthModule } from './auth.module';
 import { RequestIdInterceptor } from '../interceptor/requestId.Interceptor';
 import * as dotenv from 'dotenv';
-import  {AllExceptionsFilter} from '../filters/all-exceptions.filter';
+import { AllExceptionsFilter } from '../filters/all-exceptions.filter';
 
 dotenv.config();
 

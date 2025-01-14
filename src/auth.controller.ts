@@ -1,4 +1,11 @@
-import { Body, Controller, Post, UseInterceptors } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Post,
+  UseInterceptors,
+  HttpStatus,
+  HttpCode,
+} from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { SignupDto } from '../dto/signup.dto';
 import { LoginDto } from '../dto/login.dto';
@@ -13,7 +20,7 @@ export class AuthController {
   @UseInterceptors(TransformResponseInterceptor)
   async signUp(@Body() body: SignupDto) {
     const check: boolean = await this.authService.checkUsername(body.username);
-    if (check) return 'User Already Exists';
+    if (check) throw 'User Already Exists';
     await this.authService.insertUser(body);
     return {
       status: 'success',
@@ -26,7 +33,7 @@ export class AuthController {
   async login(@Body() body: LoginDto) {
     const checkUsername = await this.authService.checkUsername(body.username);
     if (!checkUsername) {
-      return {
+      throw {
         status: 'error',
         message: 'Incorrect username or password',
       };
@@ -39,6 +46,7 @@ export class AuthController {
   }
 
   @Post('verify')
+  @HttpCode(HttpStatus.OK)
   @UseInterceptors(TransformResponseInterceptor)
   async verify(@Body() body: VerifyDto) {
     const result = await this.authService.verifyToken(body.token);

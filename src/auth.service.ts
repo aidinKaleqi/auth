@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { User } from '../entity/user.entity';
@@ -36,7 +36,10 @@ export class AuthService {
     const userData = await this.userRepository.findOne({
       where: { username },
     });
-    await comparePassword(password, userData.password);
+    const check = await comparePassword(password, userData.password);
+    if (!check) {
+      throw new UnauthorizedException('error pass');
+    }
     const payload = { username: userData.username, userId: userData.id };
     const token = jwt.sign(payload, process.env.TOKEN_SECRET);
     await this.authRepository.insert({
